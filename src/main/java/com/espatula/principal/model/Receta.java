@@ -16,6 +16,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.espatula.principal.security.model.Usuario;
+
 @Entity
 @Table(name = "recetas")
 public class Receta {
@@ -48,6 +50,9 @@ public class Receta {
 
 	@Column(name = "dificultad")
 	private String dificultad;
+	
+	@Column(name = "urlImagen")
+	private String urlImagen;
 
 	@ManyToOne
 	@JoinColumn(name = "id_usuario", nullable = false)
@@ -68,7 +73,7 @@ public class Receta {
 	}
 
 	public Receta(String nombre, float valoracion, int duracion, String tipo, String origen, String instrucciones,
-			String dificultad) {
+			String dificultad, String urlImg) {
 		this.nombre = nombre;
 		this.valoracion = valoracion;
 		this.duracion = duracion;
@@ -76,6 +81,7 @@ public class Receta {
 		this.origen = origen;
 		this.instrucciones = instrucciones;
 		this.dificultad = dificultad;
+		this.urlImagen = urlImg;
 		this.fecha = new Date();
 		this.usuario = new Usuario();
 		this.comentarios = new HashSet<Comentario>();
@@ -154,6 +160,14 @@ public class Receta {
 		this.dificultad = dificultad;
 	}
 
+	public String getUrlImagen() {
+		return urlImagen;
+	}
+
+	public void setUrlImagen(String urlImagen) {
+		this.urlImagen = urlImagen;
+	}
+
 	public Usuario getUsuario() {
 		return usuario;
 	}
@@ -178,8 +192,8 @@ public class Receta {
 		this.ingredientes = ingredientes;
 	}
 	
-	public void addIngrediente(Ingrediente ingre, int cantidad) {
-		RecetasIngredientes ri = new RecetasIngredientes(this, ingre, cantidad);
+	public void addIngrediente(Ingrediente ingre, int cantidad, String medida) {
+		RecetasIngredientes ri = new RecetasIngredientes(this, ingre, cantidad, medida);
 		if (this.ingredientes.contains(ri)) {
 			this.ingredientes.remove(ri);
 		}

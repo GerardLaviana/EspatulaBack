@@ -43,5 +43,11 @@ public class IngredienteService implements com.espatula.principal.service.Ingred
 	public void eliminarIngredientePorId(Integer id) {
 		ingredienteRepo.delete(ingredienteRepo.findById(id).get());
 	}
+	
+	@Override
+	public Ingrediente actualizarIngrediente(Ingrediente ingreU, Integer idIA) {
+		Ingrediente ingreAntiguo = obtenerIngredientePorId(idIA);
+		return insertarIngrediente(ingreAntiguo);
+	}
 
 }

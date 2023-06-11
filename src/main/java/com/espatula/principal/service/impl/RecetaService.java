@@ -43,5 +43,11 @@ public class RecetaService implements com.espatula.principal.service.RecetaServi
 	public void eliminarRecetaPorId(Integer id) {
 		recetaRepo.delete(recetaRepo.findById(id).get());
 	}
+
+	@Override
+	public Receta actualizarReceta(Receta receU, Integer idRA) {
+		Receta recetaAntigua = obtenerRecetaPorId(idRA);
+		return insertarReceta(recetaAntigua);
+	}
 	
 }

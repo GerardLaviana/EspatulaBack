@@ -12,6 +12,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "ingredientes")
 public class Ingrediente {
@@ -31,6 +33,7 @@ public class Ingrediente {
 	private boolean gluten;
 	
 	@OneToMany( mappedBy = "ingrediente", cascade = CascadeType.MERGE, orphanRemoval = true)
+	@JsonIgnore
 	private Set<RecetasIngredientes> recetas;
 
 	public Ingrediente() {

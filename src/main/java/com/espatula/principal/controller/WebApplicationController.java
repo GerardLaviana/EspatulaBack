@@ -7,10 +7,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.espatula.principal.model.Ingrediente;
 import com.espatula.principal.model.Receta;
-import com.espatula.principal.model.Usuario;
+import com.espatula.principal.security.model.Usuario;
 import com.espatula.principal.service.IngredienteService;
 import com.espatula.principal.service.RecetaService;
-import com.espatula.principal.service.UsuarioService;
+import com.espatula.principal.security.service.UsuarioService;
 
 @RestController
 public class WebApplicationController {
@@ -32,9 +32,9 @@ public class WebApplicationController {
 	
 	public void crearTablas() {
 		
-		Receta primeraReceta = new Receta("Tortilla Española",5f,15,"Comida","España", "Aqui se explica como facelo","Media");
-		Receta segundaReceta = new Receta("Sándwich mixto",4.5f,5,"Cena","Inglaterra", "Aqui se explica como facelo","Fácil");
-		Receta terceraReceta = new Receta("Tarta de Santiago",3.5f,60,"Postre","España", "Aqui se explica como facelo","Dificíl");
+		Receta primeraReceta = new Receta("Tortilla Española",5f,15,"Comida","España", "Aqui se explica como facelo","Media","");
+		Receta segundaReceta = new Receta("Sándwich mixto",4.5f,5,"Cena","Inglaterra", "Aqui se explica como facelo","Fácil","");
+		Receta terceraReceta = new Receta("Tarta de Santiago",3.5f,60,"Postre","España", "Aqui se explica como facelo","Dificíl","");
 		
 		Ingrediente pan = new Ingrediente("Pan de molde", "Cereal", true);
 		Ingrediente jamon = new Ingrediente("Jamon", "Carne", false);
@@ -59,8 +59,8 @@ public class WebApplicationController {
 		usuario2.getRecetas().add(segundaReceta);
 		segundaReceta.setUsuario(usuario2);
 
-		usuService.insertarUsuario(usuario1);
-		usuService.insertarUsuario(usuario2);
+		//usuService.insertarUsuario(usuario1);
+		//usuService.insertarUsuario(usuario2);
 		
 		
 		ingreService.insertarIngrediente(pan);
@@ -77,19 +77,19 @@ public class WebApplicationController {
 		receService.insertarReceta(segundaReceta);
 		receService.insertarReceta(terceraReceta);
 		
-		primeraReceta.addIngrediente(huevo, 1);
-		primeraReceta.addIngrediente(patata, 3);
+		primeraReceta.addIngrediente(huevo, 1, "unidad");
+		primeraReceta.addIngrediente(patata, 3, "unidad");
 
-		segundaReceta.addIngrediente(pan, 5);
-		segundaReceta.addIngrediente(jamon, 3);
-		segundaReceta.addIngrediente(queso, 3);
+		segundaReceta.addIngrediente(pan, 5, "unidad");
+		segundaReceta.addIngrediente(jamon, 3, "unidad");
+		segundaReceta.addIngrediente(queso, 3, "unidad");
 
-		terceraReceta.addIngrediente(huevo, 2);
-		terceraReceta.addIngrediente(almendra, 14);
-		terceraReceta.addIngrediente(mantequilla, 50);
-		terceraReceta.addIngrediente(azucar, 200);
-		terceraReceta.addIngrediente(limon, 2);
-		usuService.insertarUsuario(usuario3);
+		terceraReceta.addIngrediente(huevo, 2, "unidad");
+		terceraReceta.addIngrediente(almendra, 14, "gramos");
+		terceraReceta.addIngrediente(mantequilla, 50, "gramos");
+		terceraReceta.addIngrediente(azucar, 200, "gramos");
+		terceraReceta.addIngrediente(limon, 2, "unidad");
+		//usuService.insertarUsuario(usuario3);
 		
 		/*
 		userServiceImpl.insertarUsuario(usuario1);

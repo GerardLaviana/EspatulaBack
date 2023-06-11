@@ -10,6 +10,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.MapsId;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "recetas_ingredientes")
 public class RecetasIngredientes {
@@ -19,6 +21,7 @@ public class RecetasIngredientes {
 	
 	@ManyToOne(fetch = FetchType.EAGER)
 	@MapsId("receta_id")
+	@JsonIgnore
 	private Receta receta;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
@@ -28,14 +31,18 @@ public class RecetasIngredientes {
 	@Column(name="cantidad")
 	private Integer cantidad;
 	
+	@Column(name="unidadMedida")
+	private String unidadMedida;
+	
 	private String nombre;
 
 	public RecetasIngredientes(){}
 	
-	public RecetasIngredientes(Receta r, Ingrediente i, Integer c) {
+	public RecetasIngredientes(Receta r, Ingrediente i, Integer c, String u) {
 		this.receta = r;
 		this.ingrediente = i;
 		this.cantidad = c;
+		this.unidadMedida = u;
 		this.nombre = i.getNombre();
 		this.id = new RecetasIngredientesId(r.getId(), i.getId());
 	}
@@ -85,6 +92,14 @@ public class RecetasIngredientes {
 
 	public void setCantidad(Integer cantidad) {
 		this.cantidad = cantidad;
+	}
+
+	public String getUnidadMedida() {
+		return unidadMedida;
+	}
+
+	public void setUnidadMedida(String unidadMedida) {
+		this.unidadMedida = unidadMedida;
 	}
 
 	public String getNombre() {

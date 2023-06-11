@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.espatula.principal.model.Comentario;
-import com.espatula.principal.model.Usuario;
+import com.espatula.principal.security.model.Usuario;
 import com.espatula.principal.repository.ComentarioRepo;
 
 @Service
@@ -52,4 +52,9 @@ public class ComentarioService implements com.espatula.principal.service.Comenta
 		comentarioRepo.delete(comentarioRepo.findById(id).get());
 	}
 	
+	@Override
+	public Comentario actualizarComentario(Comentario comenU, Integer idCA) {
+		Comentario comenAntiguo = obtenerComentarioPorId(idCA);
+		return insertarComentario(comenAntiguo);
+	}
 }

@@ -7,6 +7,7 @@ import com.espatula.principal.model.Ingrediente;
 public interface IngredienteService {
 
 	public Ingrediente insertarIngrediente(Ingrediente ingre);
+	public Ingrediente actualizarIngrediente(Ingrediente ingreU, Integer idIA);
 	public List<Ingrediente> listarIngredientes();
 	public Ingrediente obtenerIngredientePorId(Integer id);
 	public Ingrediente obtenerIngredientePorNombre(String nombreIngre);
