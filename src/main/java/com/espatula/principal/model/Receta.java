@@ -58,7 +58,7 @@ public class Receta {
 	@JoinColumn(name = "id_usuario", nullable = false)
 	private Usuario usuario;
 	
-	@OneToMany(mappedBy="receta", fetch = FetchType.EAGER )
+	@OneToMany(mappedBy="receta", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE )
 	private Set<Comentario> comentarios;
 	
 	@OneToMany(mappedBy = "receta", cascade = CascadeType.ALL, orphanRemoval = true)
@@ -72,10 +72,10 @@ public class Receta {
 		this.ingredientes = new HashSet<RecetasIngredientes>();
 	}
 
-	public Receta(String nombre, float valoracion, int duracion, String tipo, String origen, String instrucciones,
+	public Receta(String nombre, int duracion, String tipo, String origen, String instrucciones,
 			String dificultad, String urlImg) {
 		this.nombre = nombre;
-		this.valoracion = valoracion;
+		this.valoracion = 0f;
 		this.duracion = duracion;
 		this.tipo = tipo;
 		this.origen = origen;
@@ -214,6 +214,10 @@ public class Receta {
 				ingre.getRecetas().remove(ri);
 			}
 		}
+	}
+	
+	public void removeIngredientes() {
+		this.ingredientes.removeAll(this.ingredientes);
 	}
 	
 }

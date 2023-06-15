@@ -32,9 +32,9 @@ public class WebApplicationController {
 	
 	public void crearTablas() {
 		
-		Receta primeraReceta = new Receta("Tortilla Española",5f,15,"Comida","España", "Aqui se explica como facelo","Media","");
-		Receta segundaReceta = new Receta("Sándwich mixto",4.5f,5,"Cena","Inglaterra", "Aqui se explica como facelo","Fácil","");
-		Receta terceraReceta = new Receta("Tarta de Santiago",3.5f,60,"Postre","España", "Aqui se explica como facelo","Dificíl","");
+		//Receta primeraReceta = new Receta("Tortilla Española",15,"Comida","España", "Aqui se explica como facelo","Media","");
+		//Receta segundaReceta = new Receta("Sándwich mixto",5,"Cena","Inglaterra", "Aqui se explica como facelo","Fácil","");
+		//Receta terceraReceta = new Receta("Tarta de Santiago",60,"Postre","España", "Aqui se explica como facelo","Dificíl","");
 		
 		Ingrediente pan = new Ingrediente("Pan de molde", "Cereal", true);
 		Ingrediente jamon = new Ingrediente("Jamon", "Carne", false);
@@ -45,7 +45,7 @@ public class WebApplicationController {
 		Ingrediente mantequilla = new Ingrediente("Mantequilla", "Lacteo", false);
 		Ingrediente azucar = new Ingrediente("Azucar", "Azucar", false);
 		Ingrediente limon = new Ingrediente("Limon", "Fruta", false);
-		
+		/*
 		Usuario usuario1 = new Usuario("Isabel","1234", "ejemplo@gmail.com");
 		Usuario usuario2 = new Usuario("Manolo","1234", "manolo@gmail.com");
 		Usuario usuario3 = new Usuario("Juan","1234", "juan@gmail.com");
@@ -57,7 +57,7 @@ public class WebApplicationController {
 		terceraReceta.setUsuario(usuario2);
 
 		usuario2.getRecetas().add(segundaReceta);
-		segundaReceta.setUsuario(usuario2);
+		segundaReceta.setUsuario(usuario2);*/
 
 		//usuService.insertarUsuario(usuario1);
 		//usuService.insertarUsuario(usuario2);
@@ -73,7 +73,7 @@ public class WebApplicationController {
 		ingreService.insertarIngrediente(azucar);
 		ingreService.insertarIngrediente(limon);
 		
-		receService.insertarReceta(primeraReceta);
+		/*receService.insertarReceta(primeraReceta);
 		receService.insertarReceta(segundaReceta);
 		receService.insertarReceta(terceraReceta);
 		
@@ -88,28 +88,28 @@ public class WebApplicationController {
 		terceraReceta.addIngrediente(almendra, 14, "gramos");
 		terceraReceta.addIngrediente(mantequilla, 50, "gramos");
 		terceraReceta.addIngrediente(azucar, 200, "gramos");
-		terceraReceta.addIngrediente(limon, 2, "unidad");
+		terceraReceta.addIngrediente(limon, 2, "unidad");*/
 		//usuService.insertarUsuario(usuario3);
 		
-		/*
-		userServiceImpl.insertarUsuario(usuario1);
-		userServiceImpl.insertarUsuario(usuario2);
-		userServiceImpl.insertarUsuario(usuario3);
+		
+		/*usuService.guardar(usuario1);
+		usuService.guardar(usuario2);
+		usuService.guardar(usuario3);
 
-		receServiceImpl.insertarReceta(primeraReceta);
-		receServiceImpl.insertarReceta(segundaReceta);
-		receServiceImpl.insertarReceta(terceraReceta);
+		receService.insertarReceta(primeraReceta);
+		receService.insertarReceta(segundaReceta);
+		receService.insertarReceta(terceraReceta);
 
-		ingreServiceImpl.insertarIngrediente(pan);
-		ingreServiceImpl.insertarIngrediente(jamon);
-		ingreServiceImpl.insertarIngrediente(queso);
-		ingreServiceImpl.insertarIngrediente(huevo);
-		ingreServiceImpl.insertarIngrediente(patata);
-		ingreServiceImpl.insertarIngrediente(almendra);
-		ingreServiceImpl.insertarIngrediente(mantequilla);
-		ingreServiceImpl.insertarIngrediente(azucar);
-		ingreServiceImpl.insertarIngrediente(limon);
-		 */
+		ingreService.insertarIngrediente(pan);
+		ingreService.insertarIngrediente(jamon);
+		ingreService.insertarIngrediente(queso);
+		ingreService.insertarIngrediente(huevo);
+		ingreService.insertarIngrediente(patata);
+		ingreService.insertarIngrediente(almendra);
+		ingreService.insertarIngrediente(mantequilla);
+		ingreService.insertarIngrediente(azucar);
+		ingreService.insertarIngrediente(limon);*/
+		 
 	}
 	
 }

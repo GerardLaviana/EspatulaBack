@@ -5,12 +5,14 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.espatula.principal.dto.IngredienteDTO;
 import com.espatula.principal.model.Ingrediente;
 import com.espatula.principal.service.IngredienteService;
 
@@ -44,16 +46,28 @@ public class IngredienteController {
 	@ApiResponses(value = {
 	        @ApiResponse(code = 200, message = "Se ha insertado el ingrediente")
 	})
-	public Ingrediente insertarIngrediente(@RequestBody Ingrediente ingreNuevo){
-	        return ingreService.insertarIngrediente(ingreNuevo);
+	public ResponseEntity<?> insertarIngrediente(@RequestBody IngredienteDTO ingreNuevoDTO, BindingResult bindingResult){
+		if(bindingResult.hasErrors())
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		Ingrediente ingreNuevo = new Ingrediente(ingreNuevoDTO.getNombre(), ingreNuevoDTO.getTipo(), ingreNuevoDTO.isGluten());
+		ingreService.insertarIngrediente(ingreNuevo);
+		return new ResponseEntity<>(HttpStatus.CREATED);
 	}
 	
 	@RequestMapping(value="/update/{id}", method = RequestMethod.PUT)
 	@ApiResponses(value = {
 	        @ApiResponse(code = 200, message = "Se ha actualizado el ingrediente")
 	})
-	public Ingrediente actualizarIngrediente(@RequestBody Ingrediente ingreActualizado, @PathVariable(name = "id") Integer idIngreAntiguo){
-	        return ingreService.actualizarIngrediente(ingreActualizado, idIngreAntiguo);
+	public ResponseEntity<?> actualizarIngrediente(@PathVariable(name = "id") Integer idIngreAntiguo, @RequestBody IngredienteDTO ingreActualizado, BindingResult bindingResult){
+	        if(bindingResult.hasErrors())
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		Ingrediente ingreAntiguo = ingreService.obtenerIngredientePorId(idIngreAntiguo); 
+		ingreAntiguo.setNombre(ingreActualizado.getNombre());
+		ingreAntiguo.setTipo(ingreActualizado.getTipo());
+		ingreAntiguo.setGluten(ingreActualizado.isGluten());
+		
+		ingreService.insertarIngrediente(ingreAntiguo);
+		return new ResponseEntity<>(HttpStatus.CREATED);
 	}
 	
 	@RequestMapping(value="/remove/{id}", method = RequestMethod.DELETE)
